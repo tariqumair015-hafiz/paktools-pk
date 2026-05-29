@@ -4,6 +4,8 @@ import {
   Wallet, Coins, GraduationCap, Percent, Cake, CalendarDays,
   ClipboardCheck, ArrowRightLeft, FileText, Dices, Ruler,
   Activity, KeyRound, HandCoins, Clock, Moon, Zap, Fuel, Flame,
+  Smartphone, Building2, Banknote, Trophy, Gem, Home, Star,
+  Pill, BedDouble, Wifi,
 } from "lucide-react";
 
 export type ToolCategory = "finance" | "students" | "daily";
@@ -57,6 +59,18 @@ export const tools: ToolMeta[] = [
   { slug: "electricity-bill-calculator", name: "Electricity Bill Estimator", short: "WAPDA slab calculator.", description: "Estimate your monthly WAPDA / K-Electric bill from units consumed.", category: "daily", icon: Zap, keywords: "electricity bill, WAPDA, K-Electric, units, Pakistan", usage: 9800 },
   { slug: "fuel-cost-calculator", name: "Fuel Cost Calculator", short: "Trip cost from distance.", description: "Calculate fuel cost for any trip using distance, mileage and petrol price.", category: "daily", icon: Fuel, keywords: "fuel cost, petrol, mileage, trip, Pakistan", usage: 2800 },
   { slug: "calorie-calculator", name: "Calorie Calculator", short: "Daily calorie needs.", description: "Find your daily calorie requirement based on age, weight and activity.", category: "daily", icon: Flame, keywords: "calorie, BMR, diet, weight loss, Pakistan", usage: 1900 },
+  { slug: "car-loan-calculator", name: "Car Loan Calculator", short: "Monthly installment calculator.", description: "Calculate monthly car installment for any Pakistani bank. Supports all banks.", category: "finance", icon: Landmark, keywords: "car loan, installment, Meezan, HBL, Pakistan", usage: 8500 },
+  { slug: "pta-tax-calculator", name: "PTA Mobile Tax Calculator", short: "Mobile registration duty.", description: "Calculate PTA mobile registration tax for imported phones in Pakistan.", category: "finance", icon: Smartphone, keywords: "PTA tax, mobile duty, iPhone, Samsung, Pakistan", popular: true, usage: 12000 },
+  { slug: "govt-salary-calculator", name: "Govt Salary Calculator", short: "BPS grade salary.", description: "Calculate Pakistan government employee salary by BPS grade including all allowances.", category: "finance", icon: Building2, keywords: "govt salary, BPS, government employee, Pakistan", usage: 9200 },
+  { slug: "pension-calculator", name: "Pension Calculator", short: "Govt pension amount.", description: "Calculate Pakistan government employee pension and gratuity.", category: "finance", icon: Banknote, keywords: "pension, gratuity, government employee, retirement, Pakistan", usage: 6800 },
+  { slug: "matric-result-calculator", name: "Matric/Inter Result Calculator", short: "Percentage + grade + division.", description: "Calculate Matric or Inter percentage, grade and division for all Pakistani boards.", category: "students", icon: Trophy, keywords: "matric result, inter result, percentage, grade, Pakistani board", popular: true, usage: 11000 },
+  { slug: "gold-price-calculator", name: "Gold Price Calculator", short: "Tola/gram gold value.", description: "Calculate gold price in Pakistan for any weight and karat (24K, 22K, 21K).", category: "finance", icon: Gem, keywords: "gold price, tola, Pakistan, 24K, 22K", usage: 7600 },
+  { slug: "property-size-calculator", name: "Property Size Converter", short: "Marla, Kanal, Square Feet.", description: "Convert property size between Marla, Kanal, Square Feet, Square Yards.", category: "finance", icon: Home, keywords: "marla, kanal, square feet, property, Pakistan", usage: 8900 },
+  { slug: "umrah-savings-calculator", name: "Umrah Savings Calculator", short: "Plan your Umrah savings.", description: "Calculate how long it will take to save for Umrah or Hajj in Pakistan.", category: "daily", icon: Star, keywords: "Umrah, Hajj, savings, Pakistan, Islamic", usage: 5400 },
+  { slug: "inflation-calculator", name: "Inflation Calculator", short: "Pakistan money value over time.", description: "Calculate the real value of money considering Pakistan's inflation rate.", category: "finance", icon: TrendingUp, keywords: "inflation, Pakistan, money value, purchasing power", usage: 4200 },
+  { slug: "medicine-dose-calculator", name: "Medicine Dose Calculator", short: "Correct dose by weight.", description: "Calculate correct medicine dose for children and adults by body weight.", category: "daily", icon: Pill, keywords: "medicine dose, Paracetamol, children, Pakistan", usage: 3800 },
+  { slug: "sleep-calculator", name: "Sleep Calculator", short: "Best bedtime & wake up time.", description: "Calculate best bedtime or wake up time based on 90-minute sleep cycles.", category: "daily", icon: BedDouble, keywords: "sleep calculator, bedtime, wake up, sleep cycles", usage: 2900 },
+  { slug: "data-usage-calculator", name: "Data Usage Calculator", short: "Mobile internet usage.", description: "Calculate daily and monthly mobile internet data usage in Pakistan.", category: "daily", icon: Wifi, keywords: "data usage, mobile internet, WhatsApp, YouTube, Pakistan", usage: 3500 },
 ];
 
 export const toolBySlug = (slug: string) => tools.find((t) => t.slug === slug);

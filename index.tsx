@@ -12,7 +12,7 @@ import {
 } from "lucide-react";
 
 const FAQS = [
-  { q: "Is PakTools.pk really free?", a: "Yes. All 25+ tools are 100% free, no signup, no limits." },
+  { q: "Is PakTools.pk really free?", a: "Yes. All 37+ tools are 100% free, no signup, no limits." },
   { q: "Are the calculations accurate for Pakistan?", a: "Yes. Our tax, electricity and Zakat tools use Pakistan-specific formulas (FBR 2024-25, WAPDA slabs, 2.5% Zakat)." },
   { q: "Do you store my data?", a: "No. Every tool runs entirely in your browser. We never send your inputs to a server." },
   { q: "Which currencies does the converter support?", a: "PKR to USD, SAR, AED, GBP and EUR using live rates." },
@@ -28,9 +28,9 @@ export const Route = createFileRoute("/")({
   component: Index,
   head: () => ({
     meta: [
-      { title: "PakTools.pk — 25+ Free Online Tools & Calculators for Pakistan" },
+      { title: "PakTools.pk — 37+ Free Online Tools & Calculators for Pakistan" },
       { name: "description", content: "Free online calculators for Pakistan: Income Tax, GST, CGPA, Zakat, Prayer Times, Electricity Bill, Loan EMI and more. Fast, accurate, mobile-friendly." },
-      { property: "og:title", content: "PakTools.pk — 25+ Free Online Tools for Pakistan" },
+      { property: "og:title", content: "PakTools.pk — 37+ Free Online Tools for Pakistan" },
       { property: "og:description", content: "All-in-one Pakistani toolkit: tax, finance, student & daily calculators." },
       { property: "og:url", content: "/" },
     ],
@@ -74,7 +74,7 @@ const WHY = [
 ];
 
 const STEPS = [
-  { icon: SearchIcon, title: "Search a tool", body: "Find any of 25+ tools from the search bar." },
+  { icon: SearchIcon, title: "Search a tool", body: "Find any of 37+ tools from the search bar." },
   { icon: MousePointerClick, title: "Enter values", body: "Type your numbers — no signup required." },
   { icon: CheckCircle2, title: "Get instant result", body: "See accurate, Pakistan-specific output instantly." },
 ];
@@ -102,7 +102,7 @@ function Index() {
             <Sparkles className="h-3 w-3 text-primary" /> Made in Pakistan · 100% Free
           </span>
           <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight text-foreground leading-[1.05]">
-            25+ Free Online Tools<br className="hidden md:block" />
+            37+ Free Online Tools<br className="hidden md:block" />
             <span className="text-primary">for Pakistanis</span>
           </h1>
           <p className="mt-6 text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">
