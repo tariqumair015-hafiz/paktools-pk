@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { pageHead } from "@/lib/seo";
-import { getBlogPosts } from "@/lib/blog";
+import { fetchBlogPosts } from "@/lib/blog";
 import { useState, useEffect } from "react";
 import type { BlogPost } from "@/lib/blog";
 
@@ -13,9 +13,10 @@ export const Route = createFileRoute("/blog")({
 
 function Blog() {
   const [posts, setPosts] = useState<BlogPost[]>([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    setPosts(getBlogPosts());
+    fetchBlogPosts().then(p => { setPosts(p); setLoading(false); });
   }, []);
 
   return (
@@ -26,8 +27,11 @@ function Blog() {
           <h1 className="text-3xl font-bold text-foreground">Blog</h1>
           <p className="mt-2 text-muted-foreground">Pakistan ke liye guides — Tax, Finance, Students, Daily Life</p>
         </div>
-
-        {posts.length === 0 ? (
+        {loading ? (
+          <div className="grid gap-6 md:grid-cols-2">
+            {[1,2,3,4].map(i => <div key={i} className="h-40 bg-muted animate-pulse rounded-xl" />)}
+          </div>
+        ) : posts.length === 0 ? (
           <div className="text-center py-20 text-muted-foreground">
             <p className="text-lg">Articles coming soon!</p>
           </div>
