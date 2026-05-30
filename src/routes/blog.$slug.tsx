@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
-import { fetchBlogPost, fetchBlogPosts } from "@/lib/blog";
+import { fetchBlogPost, fetchBlogPosts } from "@/lib/blog.ts";
 import { useState, useEffect } from "react";
 import type { BlogPost } from "@/lib/blog";
 import { ArrowLeft } from "lucide-react";
