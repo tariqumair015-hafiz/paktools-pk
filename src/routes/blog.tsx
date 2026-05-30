@@ -2,9 +2,9 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { pageHead } from "@/lib/seo";
-import { fetchBlogPosts } from "@/lib/blog.ts";
+import { fetchBlogPosts } from "@/lib/blog";
 import { useState, useEffect } from "react";
-import type { BlogPost } from "@/lib/blog.ts";
+import type { BlogPost } from "@/lib/blog";
 
 export const Route = createFileRoute("/blog")({
   component: Blog,
