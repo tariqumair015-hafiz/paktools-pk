@@ -1,12 +1,33 @@
 [
   {
+    "id": "1780130778496",
+    "slug": "zakat-calculator-pakistan-nisab",
+    "title": "Zakat Calculator",
+    "meta_description": "Calculate Zakat in Pakistan with Nisab",
+    "content": "<h2>Introduction to Zakat in Pakistan</h2><p>Zakat is one of the five pillars of Islam and is a fundamental aspect of a Muslim's faith. It is a charitable giving to the poor and needy, and is obligatory for all Muslims who meet the Nisab threshold. In Pakistan, Zakat is calculated based on the Nisab, which is the minimum amount of wealth that a person must possess in order to be eligible to pay Zakat.</p><h3>Nisab in Pakistan</h3><p>The Nisab in Pakistan is currently set at 88.295 grams of silver, which is equivalent to approximately PKR 82,000. This means that if a person's wealth exceeds this amount, they are required to pay Zakat. The Nisab is calculated based on the value of silver, as it is considered a stable and reliable measure of wealth.</p><h2>Zakat Calculator Pakistan</h2><p>Calculating Zakat can be a complex process, as it involves determining the total value of one's wealth and then applying the Zakat rate. Fortunately, there are online tools available that can simplify this process. PakTools.pk offers a Zakat calculator that allows users to easily calculate their Zakat obligations. The calculator takes into account the user's income, expenses, and assets, and provides a detailed breakdown of their Zakat liability.</p><p>For example, let's say a person has a monthly income of PKR 50,000 and has savings of PKR 200,000. They also have expenses such as rent, utilities, and food, which total PKR 30,000 per month. Using the PakTools.pk Zakat calculator, they can enter their income, expenses, and assets, and the calculator will determine their Zakat liability. If their total wealth exceeds the Nisab, they will be required to pay Zakat at a rate of 2.5% of their excess wealth.</p><h3>Zakat Rates in Pakistan</h3><p>The Zakat rate in Pakistan is 2.5% of excess wealth, which means that if a person's wealth exceeds the Nisab, they will be required to pay 2.5% of the excess amount. For example, if a person has wealth of PKR 500,000 and the Nisab is PKR 82,000, they will be required to pay Zakat on the excess amount of PKR 418,000 (PKR 500,000 - PKR 82,000). The Zakat liability would be 2.5% of PKR 418,000, which is PKR 10,450.</p><h2>Importance of Zakat in Pakistan</h2><p>Zakat is an important aspect of Islam and plays a significant role in promoting social welfare and economic justice in Pakistan. By paying Zakat, Muslims can help to reduce poverty and inequality, and promote economic growth and development. Zakat also helps to promote a sense of community and social responsibility, as it encourages individuals to give to those in need and to support the less fortunate.</p><p>In addition to its social and economic benefits, Zakat also has spiritual benefits. It is considered a means of purifying one's wealth and soul, and is seen as a way of demonstrating one's commitment to their faith. By paying Zakat, Muslims can strengthen their relationship with Allah and demonstrate their gratitude for the blessings they have received.</p>",
+    "tags": [
+      "Zakat",
+      "Nisab",
+      "Pakistan",
+      "Islamic Finance"
+    ],
+    "keyword": "zakat calculator Pakistan nisab",
+    "word_count": 1000,
+    "published_at": "2026-05-30T08:46:18.496Z"
+  },
+  {
     "id": "1",
     "slug": "gst-calculator-pakistan-guide-2025",
     "title": "GST Calculator Pakistan 2025 — Free Online Tool to Calculate 17% Tax",
     "meta_description": "Calculate GST in Pakistan instantly with our free online calculator. Learn how to calculate 17% GST on any amount. Perfect for businesses and students.",
     "keyword": "GST calculator Pakistan",
     "content": "<h2>What is GST in Pakistan?</h2><p>GST (General Sales Tax) in Pakistan is currently set at <strong>17%</strong> for most goods and services. It is collected by the Federal Board of Revenue (FBR).</p><h2>How to Calculate GST?</h2><p>GST calculation is simple: <strong>GST Amount = Original Price × 17%</strong></p><p>For example, if your product costs Rs 10,000:</p><ul><li>GST = 10,000 × 0.17 = <strong>Rs 1,700</strong></li><li>Total = 10,000 + 1,700 = <strong>Rs 11,700</strong></li></ul><h2>Use Our Free GST Calculator</h2><p>Visit our <a href='/gst-calculator'>free GST calculator</a> to calculate GST instantly without any manual calculation.</p><h2>FAQs</h2><h3>What is the current GST rate in Pakistan 2025?</h3><p>The standard GST rate is 17% for 2024-25.</p><h3>Who pays GST in Pakistan?</h3><p>Businesses registered with FBR must collect and pay GST.</p>",
-    "tags": ["GST", "Tax", "Pakistan", "Calculator"],
+    "tags": [
+      "GST",
+      "Tax",
+      "Pakistan",
+      "Calculator"
+    ],
     "published_at": "2026-05-23T00:00:00.000Z",
     "word_count": 250
   },
@@ -17,9 +38,13 @@
     "meta_description": "Calculate your CGPA for Pakistani universities using our free online tool. Supports FAST, COMSATS, UET and all Pakistani universities using 4.0 GPA system.",
     "keyword": "CGPA calculator Pakistan",
     "content": "<h2>What is CGPA?</h2><p>CGPA (Cumulative Grade Point Average) measures your overall academic performance. Pakistani universities use a <strong>4.0 scale</strong>.</p><h2>Pakistani Grading System</h2><p>Most Pakistani universities follow this grading: A = 4.0, B+ = 3.5, B = 3.0, C+ = 2.5, C = 2.0, D = 1.0, F = 0.0</p><h2>How to Calculate CGPA?</h2><p>CGPA = Sum of (Grade Points × Credit Hours) ÷ Total Credit Hours</p><p>Use our <a href='/cgpa-calculator'>free CGPA calculator</a> for instant results!</p><h2>FAQs</h2><h3>What is a good CGPA in Pakistan?</h3><p>Above 3.0 is good. Above 3.5 is excellent for Pakistani universities.</p><h3>How many credit hours for graduation?</h3><p>Most Pakistani universities require 130-140 credit hours.</p>",
-    "tags": ["CGPA", "Students", "University", "Pakistan"],
+    "tags": [
+      "CGPA",
+      "Students",
+      "University",
+      "Pakistan"
+    ],
     "published_at": "2026-05-22T00:00:00.000Z",
     "word_count": 220
   }
 ]
-
