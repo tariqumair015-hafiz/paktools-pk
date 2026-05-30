@@ -3,7 +3,7 @@ import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { fetchBlogPost, fetchBlogPosts } from "@/lib/blog.ts";
 import { useState, useEffect } from "react";
-import type { BlogPost } from "@/lib/blog";
+import type { BlogPost } from "@/lib/blog.ts";
 import { ArrowLeft } from "lucide-react";
 
 export const Route = createFileRoute("/blog/$slug")({
