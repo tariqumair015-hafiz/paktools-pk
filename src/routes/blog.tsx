@@ -2,9 +2,21 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { pageHead } from "@/lib/seo";
-import { fetchBlogPosts } from "@/lib/blog";
 import { useState, useEffect } from "react";
-import type { BlogPost } from "@/lib/blog";
+import { ArrowLeft } from "lucide-react";
+import blogData from "../../public/data/blog-posts.json";
+
+interface BlogPost {
+  id: string;
+  slug: string;
+  title: string;
+  meta_description: string;
+  content: string;
+  tags: string[];
+  published_at: string;
+  word_count: number;
+  keyword: string;
+}
 
 export const Route = createFileRoute("/blog")({
   component: Blog,
@@ -13,30 +25,104 @@ export const Route = createFileRoute("/blog")({
 
 function Blog() {
   const [posts, setPosts] = useState<BlogPost[]>([]);
+  const [activePost, setActivePost] = useState<BlogPost | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetchBlogPosts().then(p => { setPosts(p); setLoading(false); });
+    // Data sorting
+    const sorted = [...blogData].sort((a, b) => 
+      new Date(b.published_at).getTime() - new Date(a.published_at).getTime()
+    );
+    setPosts(sorted as BlogPost[]);
+    setLoading(false);
+
+    // URL fallback checks
+    if (typeof window !== "undefined") {
+      const currentPath = window.location.pathname;
+      const pathParts = currentPath.split("/");
+      if (pathParts.length > 2 && pathParts[2]) {
+        const urlSlug = pathParts[2].trim().toLowerCase();
+        const found = sorted.find((p) => p.slug.trim().toLowerCase() === urlSlug);
+        if (found) setActivePost(found as BlogPost);
+      }
+    }
   }, []);
 
-  // 🚀 Native Router Fix: SPA crash ko bypass karne ke liye window location redirect function
-  const handleCardClick = (slug: string) => {
+  const handleCardClick = (post: BlogPost) => {
+    setActivePost(post);
     if (typeof window !== "undefined") {
-      window.location.href = `/blog/${slug}`;
+      window.history.pushState({}, "", `/blog/${post.slug}`);
+      window.scrollTo(0, 0);
     }
   };
 
+  const handleBack = () => {
+    setActivePost(null);
+    if (typeof window !== "undefined") {
+      window.history.pushState({}, "", "/blog");
+      window.scrollTo(0, 0);
+    }
+  };
+
+  // --- SINGLE POST VIEW SCREEN ---
+  if (activePost) {
+    return (
+      <div className="min-h-screen flex flex-col">
+        <Header />
+        <main className="mx-auto max-w-3xl w-full px-4 py-10 flex-1">
+          <button 
+            onClick={handleBack}
+            className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary mb-8 cursor-pointer"
+          >
+            <ArrowLeft className="h-4 w-4" /> Back to Blog
+          </button>
+          
+          <div className="flex flex-wrap gap-2 mb-4">
+            {activePost.tags.map(tag => (
+              <span key={tag} className="text-xs bg-primary/10 text-primary px-2 py-1 rounded-full">{tag}</span>
+            ))}
+          </div>
+          
+          <h1 className="text-2xl md:text-3xl font-bold text-foreground mb-3">{activePost.title}</h1>
+          <p className="text-muted-foreground mb-4">{activePost.meta_description}</p>
+          
+          <div className="flex items-center gap-4 text-xs text-muted-foreground mb-8 pb-6 border-b border-border">
+            <span>📅 {new Date(activePost.published_at).toLocaleDateString("en-PK", { day: "numeric", month: "long", year: "numeric" })}</span>
+            <span>📖 {activePost.word_count} words</span>
+          </div>
+
+          <div
+            className="prose prose-sm max-w-none text-foreground
+              [&_h2]:text-xl [&_h2]:font-bold [&_h2]:mt-8 [&_h2]:mb-3 [&_h2]:text-foreground
+              [&_h3]:text-lg [&_h3]:font-semibold [&_h3]:mt-6 [&_h3]:mb-2
+              [&_p]:mb-4 [&_p]:leading-relaxed
+              [&_ul]:mb-4 [&_ul]:pl-6 [&_li]:mb-1
+              [&_table]:w-full [&_table]:border-collapse [&_table]:mb-4
+              [&_th]:bg-primary/10 [&_th]:p-2 [&_th]:text-left [&_th]:border [&_th]:border-border
+              [&_td]:p-2 [&_td]:border [&_td]:border-border
+              [&_a]:text-primary [&_a]:underline
+              [&_strong]:font-semibold"
+            dangerouslySetInnerHTML={{ __html: activePost.content }}
+          />
+        </main>
+        <Footer />
+      </div>
+    );
+  }
+
+  // --- BLOG CARDS LIST SCREEN ---
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
-      <main className="mx-auto max-w-4xl w-full px-4 py-12">
+      <main className="mx-auto max-w-4xl w-full px-4 py-12 flex-1">
         <div className="mb-10">
           <h1 className="text-3xl font-bold text-foreground">Blog</h1>
           <p className="mt-2 text-muted-foreground">Pakistan ke liye guides — Tax, Finance, Students, Daily Life</p>
         </div>
+        
         {loading ? (
           <div className="grid gap-6 md:grid-cols-2">
-            {[1,2,3,4].map(i => <div key={i} className="h-40 bg-muted animate-pulse rounded-xl" />)}
+            {[1, 2, 3, 4].map(i => <div key={i} className="h-40 bg-muted animate-pulse rounded-xl" />)}
           </div>
         ) : posts.length === 0 ? (
           <div className="text-center py-20 text-muted-foreground">
@@ -47,7 +133,7 @@ function Blog() {
             {posts.map(post => (
               <div 
                 key={post.id} 
-                onClick={() => handleCardClick(post.slug)}
+                onClick={() => handleCardClick(post)}
                 className="block border border-border rounded-xl p-6 hover:border-primary hover:bg-accent/30 transition-all cursor-pointer"
               >
                 <div className="flex flex-wrap gap-2 mb-3">
