@@ -38,21 +38,27 @@ function Blog() {
         ) : (
           <div className="grid gap-6 md:grid-cols-2">
             {posts.map(post => (
-              <a key={post.id} href={`/blog/${post.slug}`}
-                className="block border border-border rounded-xl p-6 hover:border-primary hover:bg-accent/30 transition-all">
-                <div className="flex flex-wrap gap-2 mb-3">
-                  {post.tags.slice(0, 3).map(tag => (
-                    <span key={tag} className="text-xs bg-primary/10 text-primary px-2 py-1 rounded-full">{tag}</span>
-                  ))}
-                </div>
-                <h2 className="text-lg font-semibold text-foreground mb-2 line-clamp-2">{post.title}</h2>
-                <p className="text-sm text-muted-foreground line-clamp-2">{post.meta_description}</p>
-                <div className="mt-4 flex items-center justify-between text-xs text-muted-foreground">
-                  <span>{post.word_count} words</span>
-                  <span>{new Date(post.published_at).toLocaleDateString("en-PK", { day: "numeric", month: "short", year: "numeric" })}</span>
-                </div>
-              </a>
-            ))}
+           {posts.map(post => (
+  // 🚀 Sahi Tarika: <Link> use karein aur to + params pass karein
+  <Link 
+    key={post.id} 
+    to="/blog/$slug" 
+    params={{ slug: post.slug }}
+    className="block border border-border rounded-xl p-6 hover:border-primary hover:bg-accent/30 transition-all"
+  >
+    <div className="flex flex-wrap gap-2 mb-3">
+      {post.tags.slice(0, 3).map(tag => (
+        <span key={tag} className="text-xs bg-primary/10 text-primary px-2 py-1 rounded-full">{tag}</span>
+      ))}
+    </div>
+    <h2 className="text-lg font-semibold text-foreground mb-2 line-clamp-2">{post.title}</h2>
+    <p className="text-sm text-muted-foreground line-clamp-2">{post.meta_description}</p>
+    <div className="mt-4 flex items-center justify-between text-xs text-muted-foreground">
+      <span>{post.word_count} words</span>
+      <span>{new Date(post.published_at).toLocaleDateString("en-PK", { day: "numeric", month: "short", year: "numeric" })}</span>
+    </div>
+  </Link>
+))}
           </div>
         )}
       </main>
