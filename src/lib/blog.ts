@@ -13,9 +13,23 @@ export interface BlogPost {
 // Fetch blog posts from static JSON file
 export async function fetchBlogPosts(): Promise<BlogPost[]> {
   try {
-    // 🚀 Correction: Window location origin lagaya taake path hamesha root domain se start ho, dynamic sub-routes par crash na ho
-    const baseUrl = typeof window !== 'undefined' ? window.location.origin : '';
-    const res = await fetch(`${baseUrl}/data/blog-posts.json`);
+    // TanStack Start / Cloudflare Pages ke liye absolute URL handle karne ka tarika
+    let baseUrl = '';
+    if (typeof window !== 'undefined') {
+      baseUrl = window.location.origin;
+    } else if (process.env.NODE_ENV === 'production') {
+      // Live production domain ko target karega agar server par chal raha ho
+      baseUrl = 'https://paktools.pk'; 
+    } else {
+      baseUrl = 'http://localhost:3000';
+    }
+
+    const res = await fetch(`${baseUrl}/data/blog-posts.json`, {
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      }
+    });
     
     if (!res.ok) {
       console.error("Fetch failed with status:", res.status);
@@ -34,8 +48,17 @@ export async function fetchBlogPosts(): Promise<BlogPost[]> {
 
 export async function fetchBlogPost(slug: string): Promise<BlogPost | undefined> {
   const posts = await fetchBlogPosts();
-  // 🚀 Debugging helper: Console mein check karne ke liye ke hume target post mil rahi hai ya nahi
-  const foundPost = posts.find(p => p.slug === slug);
+  
+  if (!slug) return undefined;
+  
+  const cleanSlug = slug.trim().toLowerCase();
+  
+  // 🚀 Dheet Matching Correction: Agar exact slug na mile toh partial match uthayega (e.g. loan-emi-calculator aur loan-emi-calculator-pakistan dono chalenge)
+  const foundPost = posts.find(p => {
+    const jsonSlug = p.slug.trim().toLowerCase();
+    return jsonSlug === cleanSlug || jsonSlug.includes(cleanSlug) || cleanSlug.includes(jsonSlug);
+  });
+  
   return foundPost;
 }
 
@@ -50,7 +73,8 @@ function getSamplePosts(): BlogPost[] {
       content: "<h2>What is GST?</h2><p>GST in Pakistan is 17%. Use our <a href='/gst-calculator'>free GST calculator</a>!</p>",
       tags: ["GST", "Tax", "Pakistan"],
       published_at: new Date().toISOString(),
-      word_count: 250
+      word_count: 250,
+      keyword: "GST calculator"
     }
   ];
 }
