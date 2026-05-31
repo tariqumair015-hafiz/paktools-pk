@@ -17,10 +17,15 @@ function BlogPostPage() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    // 🚀 Correction: Jab bhi slug badle (ya user related article par click kare), page top par scroll ho jaye
+    window.scrollTo(0, 0);
+    
+    setLoading(true); // Naye slug par loading skeleton dobara trigger karne ke liye
     fetchBlogPost(slug).then(p => {
       setPost(p);
       setLoading(false);
     });
+    
     fetchBlogPosts().then(all => {
       setRelated(all.filter(x => x.slug !== slug).slice(0, 3));
     });
