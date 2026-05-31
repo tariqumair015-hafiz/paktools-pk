@@ -29,20 +29,18 @@ function Blog() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Data sorting
     const sorted = [...blogData].sort((a, b) => 
       new Date(b.published_at).getTime() - new Date(a.published_at).getTime()
     );
     setPosts(sorted as BlogPost[]);
     setLoading(false);
 
-    // URL fallback checks
+    // 🚀 Query Parameter bypass logic
     if (typeof window !== "undefined") {
-      const currentPath = window.location.pathname;
-      const pathParts = currentPath.split("/");
-      if (pathParts.length > 2 && pathParts[2]) {
-        const urlSlug = pathParts[2].trim().toLowerCase();
-        const found = sorted.find((p) => p.slug.trim().toLowerCase() === urlSlug);
+      const urlParams = new URLSearchParams(window.location.search);
+      const postParam = urlParams.get("post");
+      if (postParam) {
+        const found = sorted.find((p) => p.slug.trim().toLowerCase() === postParam.trim().toLowerCase());
         if (found) setActivePost(found as BlogPost);
       }
     }
@@ -51,7 +49,8 @@ function Blog() {
   const handleCardClick = (post: BlogPost) => {
     setActivePost(post);
     if (typeof window !== "undefined") {
-      window.history.pushState({}, "", `/blog/${post.slug}`);
+      // Yeh line URL ko badal kar /blog?post=slug kar degi jo router ko crash nahi karta
+      window.history.pushState({}, "", `/blog?post=${post.slug}`);
       window.scrollTo(0, 0);
     }
   };
@@ -64,7 +63,7 @@ function Blog() {
     }
   };
 
-  // --- SINGLE POST VIEW SCREEN ---
+  // --- SINGLE ARTICLE VIEW ---
   if (activePost) {
     return (
       <div className="min-h-screen flex flex-col">
@@ -72,7 +71,7 @@ function Blog() {
         <main className="mx-auto max-w-3xl w-full px-4 py-10 flex-1">
           <button 
             onClick={handleBack}
-            className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary mb-8 cursor-pointer"
+            className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary mb-8 cursor-pointer bg-transparent border-none"
           >
             <ArrowLeft className="h-4 w-4" /> Back to Blog
           </button>
@@ -96,12 +95,7 @@ function Blog() {
               [&_h2]:text-xl [&_h2]:font-bold [&_h2]:mt-8 [&_h2]:mb-3 [&_h2]:text-foreground
               [&_h3]:text-lg [&_h3]:font-semibold [&_h3]:mt-6 [&_h3]:mb-2
               [&_p]:mb-4 [&_p]:leading-relaxed
-              [&_ul]:mb-4 [&_ul]:pl-6 [&_li]:mb-1
-              [&_table]:w-full [&_table]:border-collapse [&_table]:mb-4
-              [&_th]:bg-primary/10 [&_th]:p-2 [&_th]:text-left [&_th]:border [&_th]:border-border
-              [&_td]:p-2 [&_td]:border [&_td]:border-border
-              [&_a]:text-primary [&_a]:underline
-              [&_strong]:font-semibold"
+              [&_ul]:mb-4 [&_ul]:pl-6 [&_li]:mb-1"
             dangerouslySetInnerHTML={{ __html: activePost.content }}
           />
         </main>
@@ -110,7 +104,7 @@ function Blog() {
     );
   }
 
-  // --- BLOG CARDS LIST SCREEN ---
+  // --- ALL CARDS LIST ---
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
