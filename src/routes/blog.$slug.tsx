@@ -17,10 +17,9 @@ function BlogPostPage() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // 🚀 Correction: Jab bhi slug badle (ya user related article par click kare), page top par scroll ho jaye
     window.scrollTo(0, 0);
+    setLoading(true);
     
-    setLoading(true); // Naye slug par loading skeleton dobara trigger karne ke liye
     fetchBlogPost(slug).then(p => {
       setPost(p);
       setLoading(false);
@@ -77,7 +76,7 @@ function BlogPostPage() {
         <div
           className="prose prose-sm max-w-none text-foreground
             [&_h2]:text-xl [&_h2]:font-bold [&_h2]:mt-8 [&_h2]:mb-3 [&_h2]:text-foreground
-            [&_h3]:text-lg [&_h3]:font-semibold [&_h3]:mt-6 [&_h3]:mb-2
+            [&_h3]:text-lg [&_h3]:font-semibold [&_h3]:mt-6 [&_h2]:mb-2
             [&_p]:mb-4 [&_p]:leading-relaxed
             [&_ul]:mb-4 [&_ul]:pl-6 [&_li]:mb-1
             [&_table]:w-full [&_table]:border-collapse [&_table]:mb-4
@@ -105,3 +104,4 @@ function BlogPostPage() {
     </div>
   );
 }
+  
