@@ -1,4 +1,4 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { pageHead } from "@/lib/seo";
@@ -19,6 +19,13 @@ function Blog() {
     fetchBlogPosts().then(p => { setPosts(p); setLoading(false); });
   }, []);
 
+  // 🚀 Native Router Fix: SPA crash ko bypass karne ke liye window location redirect function
+  const handleCardClick = (slug: string) => {
+    if (typeof window !== "undefined") {
+      window.location.href = `/blog/${slug}`;
+    }
+  };
+
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
@@ -38,11 +45,10 @@ function Blog() {
         ) : (
           <div className="grid gap-6 md:grid-cols-2">
             {posts.map(post => (
-              <Link 
+              <div 
                 key={post.id} 
-                to="/blog/$slug" 
-                params={{ slug: post.slug }}
-                className="block border border-border rounded-xl p-6 hover:border-primary hover:bg-accent/30 transition-all"
+                onClick={() => handleCardClick(post.slug)}
+                className="block border border-border rounded-xl p-6 hover:border-primary hover:bg-accent/30 transition-all cursor-pointer"
               >
                 <div className="flex flex-wrap gap-2 mb-3">
                   {post.tags.slice(0, 3).map(tag => (
@@ -55,7 +61,7 @@ function Blog() {
                   <span>{post.word_count} words</span>
                   <span>{new Date(post.published_at).toLocaleDateString("en-PK", { day: "numeric", month: "short", year: "numeric" })}</span>
                 </div>
-              </Link>
+              </div>
             ))}
           </div>
         )}
