@@ -38,7 +38,7 @@ function Blog() {
         ) : (
           <div className="grid gap-6 md:grid-cols-2">
             {posts.map(post => (
-              <a key={post.id} href={`/blog/${post.slug}`}
+              <a key={post.id} href={`/blog/${post.slug}/`}
                 className="block border border-border rounded-xl p-6 hover:border-primary hover:bg-accent/30 transition-all">
                 <div className="flex flex-wrap gap-2 mb-3">
                   {post.tags.slice(0, 3).map(tag => (
