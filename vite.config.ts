@@ -8,19 +8,23 @@ import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 
 // Redirect TanStack Start's bundled server entry to src/server.ts (our SSR error wrapper).
 // @cloudflare/vite-plugin builds from this — wrangler.jsonc main alone is insufficient.
-export default defineConfig({
+const config = defineConfig({
   tanstackStart: {
     server: { entry: "server" },
   },
-  // Lovable ke andar custom Vite configurations yahan add hoti hain:
-  vite: {
-    build: {
-      rollupOptions: {
-        output: {
-          // Is se saare calculator assets ek hi main bundle mein merge ho jayenge
-          manualChunks: undefined,
-        },
-      },
-    },
-  },
 });
+
+// Forcefully inject chunk merging into BOTH client and SSR/Server configurations
+if (config.vite) {
+  config.vite.build = {
+    ...config.vite.build,
+    rollupOptions: {
+      ...config.vite.build?.rollupOptions,
+      output: {
+        manualChunks: () => 'main-bundle' // Forcefully bundles everything into one asset
+      }
+    }
+  };
+}
+
+export default config;
