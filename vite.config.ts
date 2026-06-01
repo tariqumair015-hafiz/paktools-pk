@@ -12,4 +12,15 @@ export default defineConfig({
   tanstackStart: {
     server: { entry: "server" },
   },
+  // Lovable ke andar custom Vite configurations yahan add hoti hain:
+  vite: {
+    build: {
+      rollupOptions: {
+        output: {
+          // Is se saare calculator assets ek hi main bundle mein merge ho jayenge
+          manualChunks: undefined,
+        },
+      },
+    },
+  },
 });
