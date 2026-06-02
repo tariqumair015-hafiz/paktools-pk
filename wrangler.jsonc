@@ -3,8 +3,8 @@
   "name": "paktools-pk",
   "compatibility_date": "2025-09-24",
   "compatibility_flags": ["nodejs_compat"],
-  "main": ".output/server/index.mjs",
+  "main": "dist/ssr/index.js",
   "assets": {
-    "directory": "./.output/public"
+    "directory": "dist/client"
   }
 }
