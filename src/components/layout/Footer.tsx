@@ -17,7 +17,7 @@ export function Footer() {
             <span className="font-bold text-foreground">PakTools<span className="text-primary">.pk</span></span>
           </div>
           <p className="text-sm text-muted-foreground">
-            25+ free online calculators built for Pakistan — Tax, CGPA, Zakat, Prayer Times and more.
+            37+ free online calculators built for Pakistan — Tax, CGPA, Zakat, Prayer Times and more.
           </p>
           <div className="mt-4 flex gap-2">
             {[Facebook, Twitter, Instagram, Youtube].map((Icon, i) => (
