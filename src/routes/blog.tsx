@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link, Outlet, useRouterState } from "@tanstack/react-router";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { pageHead } from "@/lib/seo";
@@ -12,6 +12,7 @@ export const Route = createFileRoute("/blog")({
 });
 
 function Blog() {
+  const pathname = useRouterState({ select: (state) => state.location.pathname });
   const [posts, setPosts] = useState<BlogPost[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -19,9 +20,9 @@ function Blog() {
     fetchBlogPosts().then(p => { setPosts(p); setLoading(false); });
   }, []);
 
-  const goToPost = (slug: string) => {
-    window.location.href = `/blog/${slug}`;
-  };
+  if (pathname !== "/blog") {
+    return <Outlet />;
+  }
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -42,10 +43,10 @@ function Blog() {
         ) : (
           <div className="grid gap-6 md:grid-cols-2">
             {posts.map(post => (
-              <div
+              <Link
                 key={post.id}
-                onClick={() => goToPost(post.slug)}
-                style={{ cursor: 'pointer' }}
+                to="/blog/$slug"
+                params={{ slug: post.slug }}
                 className="block border border-border rounded-xl p-6 hover:border-primary hover:bg-accent/30 transition-all"
               >
                 <div className="flex flex-wrap gap-2 mb-3">
@@ -59,7 +60,7 @@ function Blog() {
                   <span>{post.word_count} words</span>
                   <span>{new Date(post.published_at).toLocaleDateString("en-PK", { day: "numeric", month: "short", year: "numeric" })}</span>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         )}
