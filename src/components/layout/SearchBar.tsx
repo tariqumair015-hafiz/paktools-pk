@@ -14,8 +14,8 @@ export function SearchBar({ large = false }: { large?: boolean }) {
     return tools.filter(
       (t) =>
         t.name.toLowerCase().includes(s) ||
-        t.short.toLowerCase().includes(s) ||
-        t.keywords.toLowerCase().includes(s)
+        (t.short?.toLowerCase().includes(s) ?? false) ||
+        (t.keywords?.toLowerCase().includes(s) ?? false)
     ).slice(0, 8);
   }, [q]);
 
@@ -36,7 +36,7 @@ export function SearchBar({ large = false }: { large?: boolean }) {
           value={q}
           onChange={(e) => { setQ(e.target.value); setOpen(true); }}
           onFocus={() => setOpen(true)}
-          placeholder="Search 25+ tools — GST, CGPA, Zakat…"
+          placeholder="Search 37+ tools — GST, CGPA, Zakat…"
           className={`w-full rounded-lg border border-border bg-card pl-10 pr-3 ${large ? "h-12 text-base" : "h-10 text-sm"} text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring`}
         />
       </div>
