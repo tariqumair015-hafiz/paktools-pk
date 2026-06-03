@@ -140,7 +140,7 @@ function Index() {
       <section className="border-y border-border bg-primary-soft/40">
         <div className="mx-auto max-w-7xl px-4 py-6 grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
           {[
-            { k: "25+", v: "Tools" },
+            { k: "37+", v: "Tools" },
             { k: "50,000+", v: "Users" },
             { k: "100%", v: "Free Forever" },
             { k: "🇵🇰", v: "Made in Pakistan" },
