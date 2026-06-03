@@ -8,6 +8,7 @@ import {
   Scripts,
 } from "@tanstack/react-router";
 
+import type { ReactNode } from "react";
 import appCss from "../styles.css?url";
 
 function NotFoundComponent() {
@@ -72,7 +73,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "PakTools.pk — 25+ Free Online Tools for Pakistan" },
+      { title: "PakTools.pk — 37+ Free Online Tools for Pakistan" },
       { name: "description", content: "Free online calculators for Pakistan — Income Tax, GST, CGPA, Zakat, Prayer Times, Electricity Bill and more. Fast, accurate, no signup." },
       { name: "author", content: "PakTools.pk" },
       { property: "og:site_name", content: "PakTools.pk" },
@@ -92,7 +93,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           "@context": "https://schema.org",
           "@type": "WebSite",
           name: "PakTools.pk",
-          description: "25+ free online tools and calculators for Pakistan.",
+          description: "37+ free online tools and calculators for Pakistan.",
           url: "/",
         }),
       },
