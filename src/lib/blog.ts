@@ -1,5 +1,5 @@
-// 🚀 Correction: JSON data ko direct import kar liya taake network fetch aur URL ka lafda hi khatam ho jaye
-import blogData from '../../public/data/blog-posts.json';
+// JSON imported from src/data so Vite bundles it (importing from /public is not allowed)
+import blogData from "../data/blog-posts.json";
 
 export interface BlogPost {
   id: string;
