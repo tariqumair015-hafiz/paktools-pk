@@ -1,10 +1,9 @@
-{
-  "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "paktools-pk",
-  "compatibility_date": "2025-09-24",
-  "compatibility_flags": ["nodejs_compat"],
-  "main": "dist/ssr/index.js",
-  "assets": {
-    "directory": "dist/client"
-  }
-}
+// @lovable.dev/vite-tanstack-config already includes tanstackStart, viteReact, tailwindcss,
+// tsConfigPaths, nitro (cloudflare target), componentTagger, env injection, @ alias, etc.
+import { defineConfig } from "@lovable.dev/vite-tanstack-config";
+
+export default defineConfig({
+  tanstackStart: {
+    server: { entry: "server" },
+  },
+});
