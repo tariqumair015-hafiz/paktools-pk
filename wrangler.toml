@@ -1,6 +1,6 @@
 name = "paktools-pk"
 
-main = ".output/server/index.mjs"
+main = "dist/index.js"
 
 compatibility_date = "2026-06-02"
 
@@ -8,4 +8,4 @@ compatibility_flags = ["nodejs_compat"]
 
 [site]
 
-bucket = ".output/public"
+bucket = "dist/static"
