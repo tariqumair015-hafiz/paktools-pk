@@ -1,9 +1,7 @@
-// @lovable.dev/vite-tanstack-config already includes tanstackStart, viteReact, tailwindcss,
-// tsConfigPaths, nitro (cloudflare target), componentTagger, env injection, @ alias, etc.
-import { defineConfig } from "@lovable.dev/vite-tanstack-config";
-
-export default defineConfig({
-  tanstackStart: {
-    server: { entry: "server" },
-  },
-});
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "tanstack-start-app",
+  "main": "./.output/server/index.mjs",
+  "compatibility_date": "2024-09-23",
+  "compatibility_flags": ["nodejs_compat"]
+}
