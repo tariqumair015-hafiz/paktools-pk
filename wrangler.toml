@@ -1,4 +1,4 @@
-name = "my-tanstack-app"
+name = "paktools-pk"
 
 main = ".output/server/index.mjs"
 
