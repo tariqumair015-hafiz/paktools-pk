@@ -1,5 +1,8 @@
-export default function handler(request) {
-  // Stub handler to satisfy Cloudflare plugin pre-build check.
-  // This file will be replaced by the real build output during CI.
-  return new Response('Stub response from committed .output server index', { status: 200 });
-}
+// This file is intentionally left as a minimal valid ESM export.
+// The real build output will overwrite this file during `npm run build`.
+// Do NOT commit the actual build output — Cloudflare Pages builds this automatically.
+export default {
+  fetch() {
+    return new Response("Build output not found. Run npm run build first.", { status: 503 });
+  },
+};
