@@ -1,9 +1,9 @@
 import { defineConfig } from "@lovable.dev/vite-tanstack-config";
-import cloudflarePlugin from "@cloudflare/vite-plugin";
+import { cloudflare } from "@cloudflare/vite-plugin";
 
 const plugins = [];
 if (process.env.CLOUDFLARE_PLUGIN === "1") {
-  plugins.push(cloudflarePlugin());
+  plugins.push(cloudflare({ viteEnvironment: { name: "ssr" } }));
 }
 
 export default defineConfig({
