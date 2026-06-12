@@ -7,7 +7,7 @@
     "dev": "vite dev",
     "build:server": "vite build --ssr server --outDir .output/server",
     "build:client": "vite build --outDir .output/public",
-    "build": "npm run build:server && npm run build:client",
+    "build": "bun run build:server && bun run build:client",
     "build:dev": "vite build --mode development",
     "preview": "vite preview",
     "lint": "eslint .",
