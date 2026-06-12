@@ -6,4 +6,15 @@ export default defineConfig({
     server: { entry: "server" },
   },
   plugins: [cloudflare({ viteEnvironment: { name: "ssr" } })],
+  resolve: {
+    alias: {
+      "node:stream": "stream-browserify",
+    },
+  },
+  optimizeDeps: {
+    exclude: ["@tanstack/router-core"],
+  },
+  ssr: {
+    noExternal: ["@tanstack/router-core", "@tanstack/react-router"],
+  },
 });
