@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite dev",
-    "build:server": "vite build --ssr server --outDir .output/server",
+    "build:server": "CLOUDFLARE_PLUGIN=1 vite build --outDir .output/server",
     "build:client": "vite build --outDir .output/public",
     "build": "bun run build:server && bun run build:client",
     "build:dev": "vite build --mode development",
